@@ -1,0 +1,211 @@
+@startuml
+
+title __ANIMATION1's Class Diagram__\n
+
+  namespace com.example.animation1 {
+    class com.example.animation1.AnimatedObject {
+        ~ delay : int
+        ~ sprites : ImageIcon[]
+        ~ startTime : long
+        - show : boolean
+        - spriteSheet : ImageIcon
+        + AnimatedObject()
+        + AnimatedObject()
+        + draw()
+        + flip()
+        + getAnimation()
+        + getDelay()
+        + isShow()
+        + setAnimation()
+        + setDelay()
+        + setShow()
+        + update()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.Animation {
+        - currentSprite : int
+        - delay : long
+        - fromSprite : int
+        - playedOnce : boolean
+        - rowLength : int
+        - sprites : ImageIcon[]
+        - startTime : long
+        - toSprite : int
+        + getCurrentSprite()
+        + getDelay()
+        + getFromSprite()
+        + getImage()
+        + getRowLength()
+        + getSprites()
+        + getStartTime()
+        + getToSprite()
+        + isPlayedOnce()
+        + setCurrentSprite()
+        + setDelay()
+        + setFromSprite()
+        + setPlayedOnce()
+        + setRowLength()
+        + setSprites()
+        + setStartTime()
+        + setToSprite()
+        + update()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.Background {
+        + Background()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    enum Direction {
+      DOWN
+      LEFT
+      RIGHT
+      UP
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    enum FlipDirection {
+      HORIZONTAL
+      VERTICAL
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.GameLogic {
+        + collision()
+        + collision()
+        + simpleCollision()
+        ~ GameLogic()
+        - check_pixels_collision()
+        - getCollisionBound()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.GameLoop {
+        - FPS : int
+        - running : boolean
+        + run()
+        + setRunning()
+        ~ GameLoop()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    abstract class com.example.animation1.GameObject {
+        # height : int
+        # width : int
+        # x : int
+        # y : int
+        + getHeight()
+        + getRectangle()
+        + getWidth()
+        + getX()
+        + getY()
+        + setHeight()
+        + setWidth()
+        + setX()
+        + setY()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    interface com.example.animation1.GameObjectMethodsInterface {
+        {abstract} + draw()
+        {abstract} + update()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.GamePanel {
+        {static} ~ HEIGHT : int
+        {static} ~ MAX_HEIGHT : int
+        {static} ~ MAX_WIDTH : int
+        {static} ~ WIDTH : int
+        ~ animatedObjects : ArrayList<AnimatedObject>
+        ~ panel : JPanel
+        ~ scoreLabel : JLabel
+        + GamePanel()
+        + draw()
+        + keyPressed()
+        + keyReleased()
+        + keyTyped()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+        + paint()
+        + paintComponents()
+        + update()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.Girl {
+        - delay : int
+        - girlIsJumping : boolean
+        - startTime : long
+        + Girl()
+        + draw()
+        + getDelay()
+        + getDirection()
+        + getStartTime()
+        + isGirlIsJumping()
+        + setDelay()
+        + setDirection()
+        + setGirlIsJumping()
+        + setStartTime()
+        + update()
+    }
+  }
+  
+
+  namespace com.example.animation1 {
+    class com.example.animation1.Main {
+        {static} + main()
+    }
+  }
+  
+
+  com.example.animation1.AnimatedObject .up.|> com.example.animation1.GameObjectMethodsInterface
+  com.example.animation1.AnimatedObject -up-|> com.example.animation1.GameObject
+  com.example.animation1.AnimatedObject o-- com.example.animation1.Animation : animation
+  com.example.animation1.Background -up-|> com.example.animation1.AnimatedObject
+  com.example.animation1.GameLogic o-- com.example.animation1.GamePanel : gamePanel
+  com.example.animation1.GameLoop o-- com.example.animation1.GamePanel : gamePanel
+  com.example.animation1.GameObject -up-|> javax.swing.JLabel
+  com.example.animation1.GamePanel .up.|> java.awt.event.KeyListener
+  com.example.animation1.GamePanel .up.|> java.awt.event.MouseListener
+  com.example.animation1.GamePanel -up-|> javax.swing.JFrame
+  com.example.animation1.GamePanel o-- com.example.animation1.Background : background
+  com.example.animation1.GamePanel o-- com.example.animation1.GameLogic : gameLogic
+  com.example.animation1.GamePanel o-- com.example.animation1.Girl : girl
+  com.example.animation1.Girl -up-|> com.example.animation1.AnimatedObject
+  com.example.animation1.Girl o-- com.example.animation1.Direction : direction
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
